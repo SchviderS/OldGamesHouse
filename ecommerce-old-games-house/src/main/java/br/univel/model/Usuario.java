@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
 import java.lang.Override;
+import br.univel.model.Cliente;
+import javax.persistence.OneToOne;
+import javax.persistence.FetchType;
 
 @Entity
 @Table(name = "usuario")
@@ -31,6 +34,9 @@ public class Usuario implements Serializable
 
    @Column(name = "admin")
    private Boolean admin;
+
+   @OneToOne(fetch = FetchType.LAZY)
+   private Cliente Cliente;
 
    public Long getId()
    {
@@ -111,6 +117,16 @@ public class Usuario implements Serializable
    public void setAdmin(Boolean admin)
    {
       this.admin = admin;
+   }
+
+   public Cliente getCliente()
+   {
+      return Cliente;
+   }
+
+   public void setCliente(Cliente Cliente)
+   {
+      this.Cliente = Cliente;
    }
 
    @Override
