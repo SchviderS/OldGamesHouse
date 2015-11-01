@@ -15,7 +15,11 @@ import java.lang.Override;
 public class Fabricante implements Serializable
 {
 
-   @Id
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5742276874697366923L;
+@Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;

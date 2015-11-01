@@ -13,16 +13,17 @@ import javax.persistence.Version;
 import java.lang.Override;
 import java.util.List;
 import java.math.BigDecimal;
+import java.sql.Date;
 
 @Entity
-public class Produto implements Serializable
+public class Venda implements Serializable
 {
 
    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -787267218607024701L;
-@Id
+    * 
+    */
+   private static final long serialVersionUID = 4039654041498107097L;
+   @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
@@ -30,17 +31,14 @@ public class Produto implements Serializable
    @Column(name = "version")
    private int version;
 
-   @Column
-   private String nome;
+   @Column(name = "produtos")
+   private List<Produto> produtos;
 
-   @Column
-   private String descricao;
+   @Column(name = "total")
+   private BigDecimal total;
 
-   @Column
-   private List<String> imagem;
-
-   @Column
-   private BigDecimal valor;
+   @Column(name = "data")
+   private Date data;
 
    public Long getId()
    {
@@ -69,11 +67,11 @@ public class Produto implements Serializable
       {
          return true;
       }
-      if (!(obj instanceof Produto))
+      if (!(obj instanceof Venda))
       {
          return false;
       }
-      Produto other = (Produto) obj;
+      Venda other = (Venda) obj;
       if (id != null)
       {
          if (!id.equals(other.id))
@@ -93,54 +91,33 @@ public class Produto implements Serializable
       return result;
    }
 
-   public String getNome()
+   public List<Produto> getProdutos()
    {
-      return nome;
+      return produtos;
    }
 
-   public void setNome(String nome)
+   public void setProdutos(List<Produto> produtos)
    {
-      this.nome = nome;
+      this.produtos = produtos;
    }
 
-   public String getDescricao()
+   public BigDecimal getTotal()
    {
-      return descricao;
+      return total;
    }
 
-   public void setDescricao(String descricao)
+   public void setTotal(BigDecimal total)
    {
-      this.descricao = descricao;
+      this.total = total;
    }
 
-   public List<String> getImagem()
+   public Date getData()
    {
-      return imagem;
+      return data;
    }
 
-   public void setImagem(List<String> imagem)
+   public void setData(Date data)
    {
-      this.imagem = imagem;
-   }
-
-   public BigDecimal getValor()
-   {
-      return valor;
-   }
-
-   public void setValor(BigDecimal valor)
-   {
-      this.valor = valor;
-   }
-
-   @Override
-   public String toString()
-   {
-      String result = getClass().getSimpleName() + " ";
-      if (nome != null && !nome.trim().isEmpty())
-         result += "nome: " + nome;
-      if (descricao != null && !descricao.trim().isEmpty())
-         result += ", descricao: " + descricao;
-      return result;
+      this.data = data;
    }
 }

@@ -18,7 +18,11 @@ import javax.persistence.FetchType;
 public class Cliente implements Serializable
 {
 
-   @Id
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = 3837019300547827284L;
+@Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
