@@ -26,6 +26,9 @@ public class Fabricante implements Serializable
    @Column(name = "nome")
    private String nome;
 
+   @Column(name = "logo")
+   private String logo;
+
    public Long getId()
    {
       return this.id;
@@ -87,12 +90,24 @@ public class Fabricante implements Serializable
       this.nome = nome;
    }
 
+   public String getLogo()
+   {
+      return logo;
+   }
+
+   public void setLogo(String logo)
+   {
+      this.logo = logo;
+   }
+
    @Override
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";
       if (nome != null && !nome.trim().isEmpty())
          result += "nome: " + nome;
+      if (logo != null && !logo.trim().isEmpty())
+         result += ", logo: " + logo;
       return result;
    }
 }
