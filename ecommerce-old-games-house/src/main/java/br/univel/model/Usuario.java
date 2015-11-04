@@ -12,17 +12,19 @@ import java.lang.Override;
 import br.univel.model.Cliente;
 import javax.persistence.OneToOne;
 import javax.persistence.FetchType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "usuario")
+@XmlRootElement
 public class Usuario implements Serializable
 {
 
    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 7303861579495494354L;
-@Id
+    * 
+    */
+   private static final long serialVersionUID = 7303861579495494354L;
+   @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;

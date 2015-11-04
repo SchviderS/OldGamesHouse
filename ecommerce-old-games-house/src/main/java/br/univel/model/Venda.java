@@ -11,18 +11,26 @@ import javax.persistence.Column;
 import javax.persistence.Version;
 
 import java.lang.Override;
-import java.util.List;
 import java.math.BigDecimal;
 import java.sql.Date;
+import br.univel.model.Produto;
+import java.util.Set;
+import java.util.HashSet;
+import javax.persistence.OneToMany;
+import br.univel.model.Cliente;
+import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Venda implements Serializable
 {
 
    /**
     * 
     */
-   private static final long serialVersionUID = 4039654041498107097L;
+   private static final long serialVersionUID = 1L;
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
@@ -31,14 +39,17 @@ public class Venda implements Serializable
    @Column(name = "version")
    private int version;
 
-   @Column(name = "produtos")
-   private List<Produto> produtos;
-
    @Column(name = "total")
    private BigDecimal total;
 
    @Column(name = "data")
    private Date data;
+
+   @OneToMany
+   private Set<Produto> produtos = new HashSet<Produto>();
+
+   @ManyToOne(fetch = FetchType.LAZY)
+   private Cliente cliente;
 
    public Long getId()
    {
@@ -91,16 +102,6 @@ public class Venda implements Serializable
       return result;
    }
 
-   public List<Produto> getProdutos()
-   {
-      return produtos;
-   }
-
-   public void setProdutos(List<Produto> produtos)
-   {
-      this.produtos = produtos;
-   }
-
    public BigDecimal getTotal()
    {
       return total;
@@ -120,4 +121,25 @@ public class Venda implements Serializable
    {
       this.data = data;
    }
+
+   public Set<Produto> getProdutos()
+   {
+      return this.produtos;
+   }
+
+   public void setProdutos(final Set<Produto> produtos)
+   {
+      this.produtos = produtos;
+   }
+
+   public Cliente getCliente()
+   {
+      return this.cliente;
+   }
+
+   public void setCliente(final Cliente cliente)
+   {
+      this.cliente = cliente;
+   }
+
 }

@@ -11,18 +11,19 @@ import javax.persistence.Column;
 import javax.persistence.Version;
 
 import java.lang.Override;
-import java.util.List;
 import java.math.BigDecimal;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Produto implements Serializable
 {
 
    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -787267218607024701L;
-@Id
+    * 
+    */
+   private static final long serialVersionUID = 1L;
+   @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
@@ -37,10 +38,10 @@ public class Produto implements Serializable
    private String descricao;
 
    @Column
-   private List<String> imagem;
-
-   @Column
    private BigDecimal valor;
+
+   @Column(name = "imagem")
+   private String imagem;
 
    public Long getId()
    {
@@ -113,16 +114,6 @@ public class Produto implements Serializable
       this.descricao = descricao;
    }
 
-   public List<String> getImagem()
-   {
-      return imagem;
-   }
-
-   public void setImagem(List<String> imagem)
-   {
-      this.imagem = imagem;
-   }
-
    public BigDecimal getValor()
    {
       return valor;
@@ -133,6 +124,16 @@ public class Produto implements Serializable
       this.valor = valor;
    }
 
+   public String getImagem()
+   {
+      return imagem;
+   }
+
+   public void setImagem(String imagem)
+   {
+      this.imagem = imagem;
+   }
+
    @Override
    public String toString()
    {
@@ -141,6 +142,8 @@ public class Produto implements Serializable
          result += "nome: " + nome;
       if (descricao != null && !descricao.trim().isEmpty())
          result += ", descricao: " + descricao;
+      if (imagem != null && !imagem.trim().isEmpty())
+         result += ", imagem: " + imagem;
       return result;
    }
 }

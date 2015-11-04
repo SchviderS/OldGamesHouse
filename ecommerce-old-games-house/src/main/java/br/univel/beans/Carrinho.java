@@ -6,11 +6,18 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import br.univel.model.Produto;
+import java.io.Serializable;
 
 @SessionScoped
 @Named
-public class Carrinho
+public class Carrinho implements Serializable
 {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	List<Produto> produtos;
 
 	public List<Produto> getProdutos() {

@@ -12,17 +12,22 @@ import java.lang.Override;
 import br.univel.model.Usuario;
 import javax.persistence.OneToOne;
 import javax.persistence.FetchType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "cliente")
+@XmlRootElement
 public class Cliente implements Serializable
 {
 
    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 3837019300547827284L;
-@Id
+    * 
+    */
+   private static final long serialVersionUID = 1L;
+   /**
+    * 
+    */
+   @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
@@ -33,9 +38,6 @@ public class Cliente implements Serializable
    @Column(name = "nome")
    private String nome;
 
-   @Column(name = "endereco")
-   private String Endereco;
-
    @Column(length = 15, name = "telefone")
    private String Telefone;
 
@@ -44,6 +46,9 @@ public class Cliente implements Serializable
 
    @OneToOne(fetch = FetchType.LAZY)
    private Usuario Usuario;
+
+   @Column(name = "endereco")
+   private String endereco;
 
    public Long getId()
    {
@@ -106,16 +111,6 @@ public class Cliente implements Serializable
       this.nome = nome;
    }
 
-   public String getEndereco()
-   {
-      return Endereco;
-   }
-
-   public void setEndereco(String Endereco)
-   {
-      this.Endereco = Endereco;
-   }
-
    public String getTelefone()
    {
       return Telefone;
@@ -146,18 +141,28 @@ public class Cliente implements Serializable
       this.Usuario = Usuario;
    }
 
+   public String getEndereco()
+   {
+      return endereco;
+   }
+
+   public void setEndereco(String endereco)
+   {
+      this.endereco = endereco;
+   }
+
    @Override
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";
       if (nome != null && !nome.trim().isEmpty())
          result += "nome: " + nome;
-      if (Endereco != null && !Endereco.trim().isEmpty())
-         result += ", Endereco: " + Endereco;
       if (Telefone != null && !Telefone.trim().isEmpty())
          result += ", Telefone: " + Telefone;
       if (email != null && !email.trim().isEmpty())
          result += ", email: " + email;
+      if (endereco != null && !endereco.trim().isEmpty())
+         result += ", endereco: " + endereco;
       return result;
    }
 }

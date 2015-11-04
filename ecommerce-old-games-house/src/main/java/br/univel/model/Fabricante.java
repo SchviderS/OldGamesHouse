@@ -9,17 +9,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
 import java.lang.Override;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "Fabricante")
+@XmlRootElement
 public class Fabricante implements Serializable
 {
 
+   private static final long serialVersionUID = 1L;
    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 5742276874697366923L;
-@Id
+    * 
+    */
+   @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
