@@ -13,6 +13,9 @@ import javax.persistence.Version;
 import java.lang.Override;
 import java.math.BigDecimal;
 import javax.xml.bind.annotation.XmlRootElement;
+import br.univel.model.Fabricante;
+import javax.persistence.ManyToOne;
+import javax.persistence.FetchType;
 
 @Entity
 @XmlRootElement
@@ -24,7 +27,7 @@ public class Produto implements Serializable
     */
    private static final long serialVersionUID = 1L;
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.TABLE)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
    @Version
@@ -42,6 +45,9 @@ public class Produto implements Serializable
 
    @Column(name = "imagem")
    private String imagem;
+
+   @ManyToOne(fetch = FetchType.LAZY)
+   private Fabricante fabricante;
 
    public Long getId()
    {
@@ -145,5 +151,15 @@ public class Produto implements Serializable
       if (imagem != null && !imagem.trim().isEmpty())
          result += ", imagem: " + imagem;
       return result;
+   }
+
+   public Fabricante getFabricante()
+   {
+      return this.fabricante;
+   }
+
+   public void setFabricante(final Fabricante fabricante)
+   {
+      this.fabricante = fabricante;
    }
 }

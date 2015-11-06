@@ -1,0 +1,51 @@
+<header ng-switch on="$location.path().indexOf('/Vendas/new') > -1">
+    <h3 ng-switch-when="true">Create a new Venda</h3>
+    <h3 ng-switch-when="false">View or edit Venda</h3>
+</header>
+<form id="VendaForm" name="VendaForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+
+    <div class="form-group" ng-class="{'has-error': VendaForm.total.$invalid}">
+        <label for="total" class="col-sm-2 control-label">Total</label>
+        <div id="totalControls" class="col-sm-10">
+            <input id="total" name="total" type="text" class="form-control" ng-model="venda.total" placeholder="Enter the Venda Total"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': VendaForm.data.$invalid}">
+        <label for="data" class="col-sm-2 control-label">Data</label>
+        <div id="dataControls" class="col-sm-10">
+            <input id="data" name="data" type="text" class="form-control" ng-model="venda.data" placeholder="Enter the Venda Data"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': VendaForm.produtos.$invalid}">
+        <label for="produtos" class="col-sm-2 control-label">Produtos</label>
+        <div id="produtosControls" class="col-sm-10">
+            <select id="produtos" name="produtos" multiple class="form-control" ng-model="produtosSelection" ng-options="p.text for p in produtosSelectionList">
+                <option value="">Choose a Produtos</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': VendaForm.cliente.$invalid}">
+        <label for="cliente" class="col-sm-2 control-label">Cliente</label>
+        <div id="clienteControls" class="col-sm-10">
+        <select id="cliente" name="cliente" class="form-control" ng-model="clienteSelection" ng-options="c.text for c in clienteSelectionList"  >
+            <option value="">Choose a Cliente</option>
+        </select>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveVenda" name="saveVenda" class="btn btn-primary" ng-disabled="isClean() || VendaForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteVenda" name="deleteVenda" class="btn btn-danger" ng-show="venda.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

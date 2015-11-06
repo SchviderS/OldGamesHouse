@@ -28,7 +28,7 @@ public class Cliente implements Serializable
     * 
     */
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.TABLE)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
    @Version
@@ -39,7 +39,7 @@ public class Cliente implements Serializable
    private String nome;
 
    @Column(length = 15, name = "telefone")
-   private String Telefone;
+   private String telefone;
 
    @Column(name = "email")
    private String email;
@@ -113,12 +113,12 @@ public class Cliente implements Serializable
 
    public String getTelefone()
    {
-      return Telefone;
+      return telefone;
    }
 
-   public void setTelefone(String Telefone)
+   public void setTelefone(String telefone)
    {
-      this.Telefone = Telefone;
+      this.telefone = telefone;
    }
 
    public String getEmail()
@@ -157,8 +157,8 @@ public class Cliente implements Serializable
       String result = getClass().getSimpleName() + " ";
       if (nome != null && !nome.trim().isEmpty())
          result += "nome: " + nome;
-      if (Telefone != null && !Telefone.trim().isEmpty())
-         result += ", Telefone: " + Telefone;
+      if (telefone != null && !telefone.trim().isEmpty())
+         result += ", Telefone: " + telefone;
       if (email != null && !email.trim().isEmpty())
          result += ", email: " + email;
       if (endereco != null && !endereco.trim().isEmpty())
