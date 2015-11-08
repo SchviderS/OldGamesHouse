@@ -4,23 +4,18 @@ angular.module('ecommerceoldgameshouse').controller('NewUsuarioController', func
     $scope.$location = $location;
     $scope.usuario = $scope.usuario || {};
     
-    $scope.adminList = [
-        "true",
-        " false"
-    ];
-    
-    $scope.ClienteList = ClienteResource.queryAll(function(items){
-        $scope.ClienteSelectionList = $.map(items, function(item) {
+    $scope.clienteList = ClienteResource.queryAll(function(items){
+        $scope.clienteSelectionList = $.map(items, function(item) {
             return ( {
                 value : item.id,
                 text : item.id
             });
         });
     });
-    $scope.$watch("ClienteSelection", function(selection) {
+    $scope.$watch("clienteSelection", function(selection) {
         if ( typeof selection != 'undefined') {
-            $scope.usuario.Cliente = {};
-            $scope.usuario.Cliente.id = selection.value;
+            $scope.usuario.cliente = {};
+            $scope.usuario.cliente.id = selection.value;
         }
     });
     

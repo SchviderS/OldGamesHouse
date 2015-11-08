@@ -27,7 +27,7 @@ public class Produto implements Serializable
     */
    private static final long serialVersionUID = 1L;
    @Id
-   @GeneratedValue(strategy = GenerationType.TABLE)
+   @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
    @Version

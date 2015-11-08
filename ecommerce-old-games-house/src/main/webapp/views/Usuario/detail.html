@@ -15,6 +15,15 @@
         </div>
     </div>
 
+    <div class="form-group" ng-class="{'has-error': UsuarioForm.cliente.$invalid}">
+        <label for="cliente" class="col-sm-2 control-label">Cliente</label>
+        <div id="clienteControls" class="col-sm-10">
+        <select id="cliente" name="cliente" class="form-control" ng-model="clienteSelection" ng-options="c.text for c in clienteSelectionList"  >
+            <option value="">Choose a Cliente</option>
+        </select>
+        </div>
+    </div>
+
     <div class="form-group" ng-class="{'has-error': UsuarioForm.senha.$invalid}">
         <label for="senha" class="col-sm-2 control-label">Senha</label>
         <div id="senhaControls" class="col-sm-10">
@@ -25,18 +34,7 @@
     <div class="form-group" ng-class="{'has-error': UsuarioForm.admin.$invalid}">
         <label for="admin" class="col-sm-2 control-label">Admin</label>
         <div id="adminControls" class="col-sm-10">
-        <select id="admin" name="admin" class="form-control" ng-model="usuario.admin" ng-options="a for a in adminList"  >
-            <option value="">Choose a Admin</option>
-        </select>
-        </div>
-    </div>
-
-    <div class="form-group" ng-class="{'has-error': UsuarioForm.Cliente.$invalid}">
-        <label for="Cliente" class="col-sm-2 control-label">Cliente</label>
-        <div id="ClienteControls" class="col-sm-10">
-        <select id="Cliente" name="Cliente" class="form-control" ng-model="ClienteSelection" ng-options="C.text for C in ClienteSelectionList"  >
-            <option value="">Choose a Cliente</option>
-        </select>
+            <input id="admin" name="admin" type="checkbox" class="form-control" ng-model="usuario.admin" placeholder="Enter the Usuario Admin"></input>
         </div>
     </div>
 

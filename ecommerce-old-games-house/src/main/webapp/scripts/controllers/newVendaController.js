@@ -1,27 +1,8 @@
 
-angular.module('ecommerceoldgameshouse').controller('NewVendaController', function ($scope, $location, locationParser, VendaResource , ProdutoResource, ClienteResource) {
+angular.module('ecommerceoldgameshouse').controller('NewVendaController', function ($scope, $location, locationParser, VendaResource , ClienteResource, ItemVendaResource) {
     $scope.disabled = false;
     $scope.$location = $location;
     $scope.venda = $scope.venda || {};
-    
-    $scope.produtosList = ProdutoResource.queryAll(function(items){
-        $scope.produtosSelectionList = $.map(items, function(item) {
-            return ( {
-                value : item.id,
-                text : item.id
-            });
-        });
-    });
-    $scope.$watch("produtosSelection", function(selection) {
-        if (typeof selection != 'undefined') {
-            $scope.venda.produtos = [];
-            $.each(selection, function(idx,selectedItem) {
-                var collectionItem = {};
-                collectionItem.id = selectedItem.value;
-                $scope.venda.produtos.push(collectionItem);
-            });
-        }
-    });
     
     $scope.clienteList = ClienteResource.queryAll(function(items){
         $scope.clienteSelectionList = $.map(items, function(item) {
@@ -35,6 +16,25 @@ angular.module('ecommerceoldgameshouse').controller('NewVendaController', functi
         if ( typeof selection != 'undefined') {
             $scope.venda.cliente = {};
             $scope.venda.cliente.id = selection.value;
+        }
+    });
+    
+    $scope.itensList = ItemVendaResource.queryAll(function(items){
+        $scope.itensSelectionList = $.map(items, function(item) {
+            return ( {
+                value : item.id,
+                text : item.id
+            });
+        });
+    });
+    $scope.$watch("itensSelection", function(selection) {
+        if (typeof selection != 'undefined') {
+            $scope.venda.itens = [];
+            $.each(selection, function(idx,selectedItem) {
+                var collectionItem = {};
+                collectionItem.id = selectedItem.value;
+                $scope.venda.itens.push(collectionItem);
+            });
         }
     });
     

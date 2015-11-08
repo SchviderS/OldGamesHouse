@@ -22,21 +22,21 @@
         </div>
     </div>
 
-    <div class="form-group" ng-class="{'has-error': VendaForm.produtos.$invalid}">
-        <label for="produtos" class="col-sm-2 control-label">Produtos</label>
-        <div id="produtosControls" class="col-sm-10">
-            <select id="produtos" name="produtos" multiple class="form-control" ng-model="produtosSelection" ng-options="p.text for p in produtosSelectionList">
-                <option value="">Choose a Produtos</option>
-            </select>
-        </div>
-    </div>
-
     <div class="form-group" ng-class="{'has-error': VendaForm.cliente.$invalid}">
         <label for="cliente" class="col-sm-2 control-label">Cliente</label>
         <div id="clienteControls" class="col-sm-10">
         <select id="cliente" name="cliente" class="form-control" ng-model="clienteSelection" ng-options="c.text for c in clienteSelectionList"  >
             <option value="">Choose a Cliente</option>
         </select>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': VendaForm.itens.$invalid}">
+        <label for="itens" class="col-sm-2 control-label">Itens</label>
+        <div id="itensControls" class="col-sm-10">
+            <select id="itens" name="itens" multiple class="form-control" ng-model="itensSelection" ng-options="i.text for i in itensSelectionList">
+                <option value="">Choose a Itens</option>
+            </select>
         </div>
     </div>
 

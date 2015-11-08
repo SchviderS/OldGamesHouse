@@ -10,14 +10,20 @@ import javax.persistence.Column;
 import javax.persistence.Version;
 import java.lang.Override;
 import java.math.BigDecimal;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "ItemVenda")
+@XmlRootElement
 public class ItemVenda implements Serializable
 {
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.TABLE)
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+@Id
+   @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
    @Version

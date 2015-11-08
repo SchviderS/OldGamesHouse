@@ -36,6 +36,7 @@
                         <div id="sidebar-entries" class="list-group">
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Clientes')}" href="#/Clientes" data-toggle="offcanvas">Clientes</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Fabricantes')}" href="#/Fabricantes" data-toggle="offcanvas">Fabricantes</a>
+                        	<a class="list-group-item" ng-class="{active: matchesRoute('ItemVendas')}" href="#/ItemVendas" data-toggle="offcanvas">ItemVendas</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Produtos')}" href="#/Produtos" data-toggle="offcanvas">Produtos</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Usuarios')}" href="#/Usuarios" data-toggle="offcanvas">Usuarios</a>
                         	<a class="list-group-item" ng-class="{active: matchesRoute('Vendas')}" href="#/Vendas" data-toggle="offcanvas">Vendas</a>
@@ -80,6 +81,10 @@
     <script src="scripts/controllers/newFabricanteController.js"></script>
     <script src="scripts/controllers/searchFabricanteController.js"></script>
     <script src="scripts/controllers/editFabricanteController.js"></script>
+    <script src="scripts/services/ItemVendaFactory.js"></script>
+    <script src="scripts/controllers/newItemVendaController.js"></script>
+    <script src="scripts/controllers/searchItemVendaController.js"></script>
+    <script src="scripts/controllers/editItemVendaController.js"></script>
     <script src="scripts/services/ProdutoFactory.js"></script>
     <script src="scripts/controllers/newProdutoController.js"></script>
     <script src="scripts/controllers/searchProdutoController.js"></script>

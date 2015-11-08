@@ -1,40 +1,37 @@
 <div class="form-horizontal">
-    <h3>Create a new Venda</h3>
+    <h3>Create a new ItemVenda</h3>
     <div class="form-group">
         <div class="col-md-offset-2 col-sm-2">
-            <a id="Create" name="Create" class="btn btn-primary" href="#/Vendas/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+            <a id="Create" name="Create" class="btn btn-primary" href="#/ItemVendas/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
         </div>
     </div>
 </div>
 <hr/>
 <div>
-    <h3>Search for Vendas</h3>
-    <form id="VendaSearch" class="form-horizontal">
+    <h3>Search for ItemVendas</h3>
+    <form id="ItemVendaSearch" class="form-horizontal">
         
 
     <div class="form-group">
-        <label for="total" class="col-sm-2 control-label">Total</label>
+        <label for="idProduto" class="col-sm-2 control-label">Id Produto</label>
         <div class="col-sm-10">
-            <input id="total" name="total" class="form-control" type="text" ng-model="search.total" placeholder="Enter the Venda Total"></input>
+            <input id="idProduto" name="idProduto" class="form-control" type="text" ng-model="search.idProduto" placeholder="Enter the ItemVenda Id Produto"></input>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="data" class="col-sm-2 control-label">Data</label>
+        <label for="quantidade" class="col-sm-2 control-label">Quantidade</label>
         <div class="col-sm-10">
-            <input id="data" name="data" class="form-control" type="text" ng-model="search.data" placeholder="Enter the Venda Data"></input>
+            <input id="quantidade" name="quantidade" class="form-control" type="text" ng-model="search.quantidade" placeholder="Enter the ItemVenda Quantidade"></input>
         </div>
     </div>
 
     <div class="form-group">
-        <label for="cliente" class="col-sm-2 control-label">Cliente</label>
+        <label for="valor" class="col-sm-2 control-label">Valor</label>
         <div class="col-sm-10">
-            <select id="cliente" name="cliente" class="form-control" ng-model="search.cliente" ng-options="c as c.id for c in clienteList">
-                <option value="">Choose a Cliente</option>
-            </select>
+            <input id="valor" name="valor" class="form-control" type="text" ng-model="search.valor" placeholder="Enter the ItemVenda Valor"></input>
         </div>
     </div>
-
 
 
         <div class="form-group">
@@ -49,16 +46,16 @@
         <table class="table table-responsive table-bordered table-striped clearfix">
             <thead>
                 <tr>
-                    <th>Total</th>
-                    <th>Data</th>
-                    <th>Cliente</th>
+                    <th>Id Produto</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
                 </tr>
             </thead>
             <tbody id="search-results-body">
                 <tr ng-repeat="result in searchResults | searchFilter:searchResults | startFrom:currentPage*pageSize | limitTo:pageSize">
-                    <td><a href="#/Vendas/edit/{{result.id}}">{{result.total}}</a></td>
-                    <td><a href="#/Vendas/edit/{{result.id}}">{{result.data}}</a></td>
-                        <td><a href="#/Vendas/edit/{{result.id}}">{{result.cliente.id}}</a></td>
+                    <td><a href="#/ItemVendas/edit/{{result.id}}">{{result.idProduto}}</a></td>
+                    <td><a href="#/ItemVendas/edit/{{result.id}}">{{result.quantidade}}</a></td>
+                    <td><a href="#/ItemVendas/edit/{{result.id}}">{{result.valor}}</a></td>
                 </tr>
             </tbody>
         </table>

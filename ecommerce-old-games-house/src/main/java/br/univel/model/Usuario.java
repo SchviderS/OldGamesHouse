@@ -19,29 +19,26 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class Usuario implements Serializable
 {
-	private static final long serialVersionUID = 1L;
-/**
-    * 
-    */
+
    @Id
-   @GeneratedValue(strategy = GenerationType.TABLE)
+   @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
    @Version
    @Column(name = "version")
    private int version;
 
-   @Column(name = "login")
+   @Column
    private String login;
 
-   @Column(name = "senha")
-   private String senha;
-
-   @Column(name = "admin")
-   private Boolean admin;
+   @Column
+   private boolean admin;
 
    @OneToOne(fetch = FetchType.LAZY)
-   private Cliente Cliente;
+   private Cliente cliente;
+
+   @Column
+   private String senha;
 
    public Long getId()
    {
@@ -104,6 +101,26 @@ public class Usuario implements Serializable
       this.login = login;
    }
 
+   public boolean isAdmin()
+   {
+      return admin;
+   }
+
+   public void setAdmin(boolean admin)
+   {
+      this.admin = admin;
+   }
+
+   public Cliente getCliente()
+   {
+      return cliente;
+   }
+
+   public void setCliente(Cliente cliente)
+   {
+      this.cliente = cliente;
+   }
+
    public String getSenha()
    {
       return senha;
@@ -114,36 +131,15 @@ public class Usuario implements Serializable
       this.senha = senha;
    }
 
-   public Boolean getAdmin()
-   {
-      return admin;
-   }
-
-   public void setAdmin(Boolean admin)
-   {
-      this.admin = admin;
-   }
-
-   public Cliente getCliente()
-   {
-      return Cliente;
-   }
-
-   public void setCliente(Cliente Cliente)
-   {
-      this.Cliente = Cliente;
-   }
-
    @Override
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";
       if (login != null && !login.trim().isEmpty())
          result += "login: " + login;
+      result += ", admin: " + admin;
       if (senha != null && !senha.trim().isEmpty())
          result += ", senha: " + senha;
-      if (admin != null)
-         result += ", admin: " + admin;
       return result;
    }
 }

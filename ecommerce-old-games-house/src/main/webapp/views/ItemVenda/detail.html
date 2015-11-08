@@ -1,0 +1,42 @@
+<header ng-switch on="$location.path().indexOf('/ItemVendas/new') > -1">
+    <h3 ng-switch-when="true">Create a new ItemVenda</h3>
+    <h3 ng-switch-when="false">View or edit ItemVenda</h3>
+</header>
+<form id="ItemVendaForm" name="ItemVendaForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+
+    <div class="form-group" ng-class="{'has-error': ItemVendaForm.idProduto.$invalid}">
+        <label for="idProduto" class="col-sm-2 control-label">Id Produto</label>
+        <div id="idProdutoControls" class="col-sm-10">
+            <input id="idProduto" name="idProduto" type="number" class="form-control" ng-model="itemVenda.idProduto" placeholder="Enter the ItemVenda Id Produto"></input>
+            <span class="help-block error" ng-show="ItemVendaForm.idProduto.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ItemVendaForm.quantidade.$invalid}">
+        <label for="quantidade" class="col-sm-2 control-label">Quantidade</label>
+        <div id="quantidadeControls" class="col-sm-10">
+            <input id="quantidade" name="quantidade" type="number" class="form-control" ng-model="itemVenda.quantidade" placeholder="Enter the ItemVenda Quantidade"></input>
+            <span class="help-block error" ng-show="ItemVendaForm.quantidade.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ItemVendaForm.valor.$invalid}">
+        <label for="valor" class="col-sm-2 control-label">Valor</label>
+        <div id="valorControls" class="col-sm-10">
+            <input id="valor" name="valor" type="text" class="form-control" ng-model="itemVenda.valor" placeholder="Enter the ItemVenda Valor"></input>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveItemVenda" name="saveItemVenda" class="btn btn-primary" ng-disabled="isClean() || ItemVendaForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteItemVenda" name="deleteItemVenda" class="btn btn-danger" ng-show="itemVenda.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

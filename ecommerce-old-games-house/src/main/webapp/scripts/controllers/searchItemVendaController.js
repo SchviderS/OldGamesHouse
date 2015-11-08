@@ -1,6 +1,6 @@
 
 
-angular.module('ecommerceoldgameshouse').controller('SearchVendaController', function($scope, $http, VendaResource , ClienteResource, ItemVendaResource) {
+angular.module('ecommerceoldgameshouse').controller('SearchItemVendaController', function($scope, $http, ItemVendaResource ) {
 
     $scope.search={};
     $scope.currentPage = 0;
@@ -17,10 +17,9 @@ angular.module('ecommerceoldgameshouse').controller('SearchVendaController', fun
         }
         return max;
     };
-    $scope.clienteList = ClienteResource.queryAll();
 
     $scope.performSearch = function() {
-        $scope.searchResults = VendaResource.queryAll(function(){
+        $scope.searchResults = ItemVendaResource.queryAll(function(){
             $scope.numberOfPages();
         });
     };

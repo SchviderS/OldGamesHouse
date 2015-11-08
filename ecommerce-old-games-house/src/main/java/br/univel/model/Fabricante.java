@@ -22,7 +22,7 @@ public class Fabricante implements Serializable
     * 
     */
    @Id
-   @GeneratedValue(strategy = GenerationType.TABLE)
+   @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
    @Version

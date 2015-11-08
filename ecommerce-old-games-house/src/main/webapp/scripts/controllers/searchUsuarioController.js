@@ -17,11 +17,7 @@ angular.module('ecommerceoldgameshouse').controller('SearchUsuarioController', f
         }
         return max;
     };
-    $scope.adminList = [
-        "true",
-        " false"
-    ];
-    $scope.ClienteList = ClienteResource.queryAll();
+    $scope.clienteList = ClienteResource.queryAll();
 
     $scope.performSearch = function() {
         $scope.searchResults = UsuarioResource.queryAll(function(){

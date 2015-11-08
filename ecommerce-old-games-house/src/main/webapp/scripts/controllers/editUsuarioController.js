@@ -10,7 +10,7 @@ angular.module('ecommerceoldgameshouse').controller('EditUsuarioController', fun
             self.original = data;
             $scope.usuario = new UsuarioResource(self.original);
             ClienteResource.queryAll(function(items) {
-                $scope.ClienteSelectionList = $.map(items, function(item) {
+                $scope.clienteSelectionList = $.map(items, function(item) {
                     var wrappedObject = {
                         id : item.id
                     };
@@ -18,10 +18,10 @@ angular.module('ecommerceoldgameshouse').controller('EditUsuarioController', fun
                         value : item.id,
                         text : item.id
                     };
-                    if($scope.usuario.Cliente && item.id == $scope.usuario.Cliente.id) {
-                        $scope.ClienteSelection = labelObject;
-                        $scope.usuario.Cliente = wrappedObject;
-                        self.original.Cliente = $scope.usuario.Cliente;
+                    if($scope.usuario.cliente && item.id == $scope.usuario.cliente.id) {
+                        $scope.clienteSelection = labelObject;
+                        $scope.usuario.cliente = wrappedObject;
+                        self.original.cliente = $scope.usuario.cliente;
                     }
                     return labelObject;
                 });
@@ -63,14 +63,10 @@ angular.module('ecommerceoldgameshouse').controller('EditUsuarioController', fun
         $scope.usuario.$remove(successCallback, errorCallback);
     };
     
-    $scope.adminList = [
-        "true",  
-        " false"  
-    ];
-    $scope.$watch("ClienteSelection", function(selection) {
+    $scope.$watch("clienteSelection", function(selection) {
         if (typeof selection != 'undefined') {
-            $scope.usuario.Cliente = {};
-            $scope.usuario.Cliente.id = selection.value;
+            $scope.usuario.cliente = {};
+            $scope.usuario.cliente.id = selection.value;
         }
     });
     

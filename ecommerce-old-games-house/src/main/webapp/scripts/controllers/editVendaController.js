@@ -1,6 +1,6 @@
 
 
-angular.module('ecommerceoldgameshouse').controller('EditVendaController', function($scope, $routeParams, $location, VendaResource , ProdutoResource, ClienteResource) {
+angular.module('ecommerceoldgameshouse').controller('EditVendaController', function($scope, $routeParams, $location, VendaResource , ClienteResource, ItemVendaResource) {
     var self = this;
     $scope.disabled = false;
     $scope.$location = $location;
@@ -9,27 +9,6 @@ angular.module('ecommerceoldgameshouse').controller('EditVendaController', funct
         var successCallback = function(data){
             self.original = data;
             $scope.venda = new VendaResource(self.original);
-            ProdutoResource.queryAll(function(items) {
-                $scope.produtosSelectionList = $.map(items, function(item) {
-                    var wrappedObject = {
-                        id : item.id
-                    };
-                    var labelObject = {
-                        value : item.id,
-                        text : item.id
-                    };
-                    if($scope.venda.produtos){
-                        $.each($scope.venda.produtos, function(idx, element) {
-                            if(item.id == element.id) {
-                                $scope.produtosSelection.push(labelObject);
-                                $scope.venda.produtos.push(wrappedObject);
-                            }
-                        });
-                        self.original.produtos = $scope.venda.produtos;
-                    }
-                    return labelObject;
-                });
-            });
             ClienteResource.queryAll(function(items) {
                 $scope.clienteSelectionList = $.map(items, function(item) {
                     var wrappedObject = {
@@ -43,6 +22,27 @@ angular.module('ecommerceoldgameshouse').controller('EditVendaController', funct
                         $scope.clienteSelection = labelObject;
                         $scope.venda.cliente = wrappedObject;
                         self.original.cliente = $scope.venda.cliente;
+                    }
+                    return labelObject;
+                });
+            });
+            ItemVendaResource.queryAll(function(items) {
+                $scope.itensSelectionList = $.map(items, function(item) {
+                    var wrappedObject = {
+                        id : item.id
+                    };
+                    var labelObject = {
+                        value : item.id,
+                        text : item.id
+                    };
+                    if($scope.venda.itens){
+                        $.each($scope.venda.itens, function(idx, element) {
+                            if(item.id == element.id) {
+                                $scope.itensSelection.push(labelObject);
+                                $scope.venda.itens.push(wrappedObject);
+                            }
+                        });
+                        self.original.itens = $scope.venda.itens;
                     }
                     return labelObject;
                 });
@@ -84,21 +84,21 @@ angular.module('ecommerceoldgameshouse').controller('EditVendaController', funct
         $scope.venda.$remove(successCallback, errorCallback);
     };
     
-    $scope.produtosSelection = $scope.produtosSelection || [];
-    $scope.$watch("produtosSelection", function(selection) {
-        if (typeof selection != 'undefined' && $scope.venda) {
-            $scope.venda.produtos = [];
-            $.each(selection, function(idx,selectedItem) {
-                var collectionItem = {};
-                collectionItem.id = selectedItem.value;
-                $scope.venda.produtos.push(collectionItem);
-            });
-        }
-    });
     $scope.$watch("clienteSelection", function(selection) {
         if (typeof selection != 'undefined') {
             $scope.venda.cliente = {};
             $scope.venda.cliente.id = selection.value;
+        }
+    });
+    $scope.itensSelection = $scope.itensSelection || [];
+    $scope.$watch("itensSelection", function(selection) {
+        if (typeof selection != 'undefined' && $scope.venda) {
+            $scope.venda.itens = [];
+            $.each(selection, function(idx,selectedItem) {
+                var collectionItem = {};
+                collectionItem.id = selectedItem.value;
+                $scope.venda.itens.push(collectionItem);
+            });
         }
     });
     

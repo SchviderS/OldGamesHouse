@@ -13,14 +13,14 @@ import javax.persistence.Version;
 import java.lang.Override;
 import java.math.BigDecimal;
 import java.sql.Date;
-import br.univel.model.Produto;
 import java.util.Set;
 import java.util.HashSet;
-import javax.persistence.OneToMany;
 import br.univel.model.Cliente;
 import javax.persistence.ManyToOne;
 import javax.persistence.FetchType;
 import javax.xml.bind.annotation.XmlRootElement;
+import br.univel.model.ItemVenda;
+import javax.persistence.ManyToMany;
 
 @Entity
 @XmlRootElement
@@ -32,7 +32,7 @@ public class Venda implements Serializable
     */
    private static final long serialVersionUID = 1L;
    @Id
-   @GeneratedValue(strategy = GenerationType.TABLE)
+   @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
    @Version
@@ -45,11 +45,11 @@ public class Venda implements Serializable
    @Column(name = "data")
    private Date data;
 
-   @OneToMany
-   private Set<ItemVenda> produtos = new HashSet<ItemVenda>();
-
    @ManyToOne(fetch = FetchType.LAZY)
    private Cliente cliente;
+
+   @ManyToMany
+   private Set<ItemVenda> itens = new HashSet<ItemVenda>();
 
    public Long getId()
    {
@@ -122,16 +122,6 @@ public class Venda implements Serializable
       this.data = data;
    }
 
-   public Set<ItemVenda> getProdutos()
-   {
-      return this.produtos;
-   }
-
-   public void setProdutos(final Set<ItemVenda> produtos)
-   {
-      this.produtos = produtos;
-   }
-
    public Cliente getCliente()
    {
       return this.cliente;
@@ -140,6 +130,16 @@ public class Venda implements Serializable
    public void setCliente(final Cliente cliente)
    {
       this.cliente = cliente;
+   }
+
+   public Set<ItemVenda> getItens()
+   {
+      return this.itens;
+   }
+
+   public void setItens(final Set<ItemVenda> itens)
+   {
+      this.itens = itens;
    }
 
 }
