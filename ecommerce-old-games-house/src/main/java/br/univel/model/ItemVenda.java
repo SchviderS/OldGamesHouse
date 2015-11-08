@@ -1,36 +1,21 @@
 package br.univel.model;
 
 import javax.persistence.Entity;
-
 import java.io.Serializable;
-
+import javax.persistence.Table;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
-
 import java.lang.Override;
 import java.math.BigDecimal;
-import java.sql.Date;
-import br.univel.model.Produto;
-import java.util.Set;
-import java.util.HashSet;
-import javax.persistence.OneToMany;
-import br.univel.model.Cliente;
-import javax.persistence.ManyToOne;
-import javax.persistence.FetchType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@XmlRootElement
-public class Venda implements Serializable
+@Table(name = "ItemVenda")
+public class ItemVenda implements Serializable
 {
 
-   /**
-    * 
-    */
-   private static final long serialVersionUID = 1L;
    @Id
    @GeneratedValue(strategy = GenerationType.TABLE)
    @Column(name = "id", updatable = false, nullable = false)
@@ -39,17 +24,14 @@ public class Venda implements Serializable
    @Column(name = "version")
    private int version;
 
-   @Column(name = "total")
-   private BigDecimal total;
+   @Column
+   private int idProduto;
 
-   @Column(name = "data")
-   private Date data;
+   @Column
+   private int quantidade;
 
-   @OneToMany
-   private Set<ItemVenda> produtos = new HashSet<ItemVenda>();
-
-   @ManyToOne(fetch = FetchType.LAZY)
-   private Cliente cliente;
+   @Column
+   private BigDecimal valor;
 
    public Long getId()
    {
@@ -78,11 +60,11 @@ public class Venda implements Serializable
       {
          return true;
       }
-      if (!(obj instanceof Venda))
+      if (!(obj instanceof ItemVenda))
       {
          return false;
       }
-      Venda other = (Venda) obj;
+      ItemVenda other = (ItemVenda) obj;
       if (id != null)
       {
          if (!id.equals(other.id))
@@ -102,44 +84,42 @@ public class Venda implements Serializable
       return result;
    }
 
-   public BigDecimal getTotal()
+   public int getIdProduto()
    {
-      return total;
+      return idProduto;
    }
 
-   public void setTotal(BigDecimal total)
+   public void setIdProduto(int idProduto)
    {
-      this.total = total;
+      this.idProduto = idProduto;
    }
 
-   public Date getData()
+   public int getQuantidade()
    {
-      return data;
+      return quantidade;
    }
 
-   public void setData(Date data)
+   public void setQuantidade(int quantidade)
    {
-      this.data = data;
+      this.quantidade = quantidade;
    }
 
-   public Set<ItemVenda> getProdutos()
+   public BigDecimal getValor()
    {
-      return this.produtos;
+      return valor;
    }
 
-   public void setProdutos(final Set<ItemVenda> produtos)
+   public void setValor(BigDecimal valor)
    {
-      this.produtos = produtos;
+      this.valor = valor;
    }
 
-   public Cliente getCliente()
+   @Override
+   public String toString()
    {
-      return this.cliente;
+      String result = getClass().getSimpleName() + " ";
+      result += "idProduto: " + idProduto;
+      result += ", quantidade: " + quantidade;
+      return result;
    }
-
-   public void setCliente(final Cliente cliente)
-   {
-      this.cliente = cliente;
-   }
-
 }
