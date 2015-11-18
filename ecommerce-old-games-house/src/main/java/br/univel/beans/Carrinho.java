@@ -30,4 +30,8 @@ public class Carrinho implements Serializable
 		produtos.add(p);
 	}
 	
+	public void limpar(){
+		produtos.clear();
+	}
+	
 }

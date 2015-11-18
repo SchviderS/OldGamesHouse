@@ -32,5 +32,4 @@ public class IndexController implements Serializable
 	   return prod;
    }
    
-   
 }
