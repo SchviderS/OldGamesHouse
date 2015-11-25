@@ -23,8 +23,8 @@ public class VendaCarrinhoTest {
 	
 	@Test
 	public void testeGravacaoCarrinhoVenda(){ 
-		Produto p1 = buscaProduto(7);
-		Produto p2 = buscaProduto(8);
+		Produto p1 = buscaProduto(3);
+		Produto p2 = buscaProduto(4);
 	
 		assertEquals(addProdutoQtd(p1.getId(), 2), true);
 		assertEquals(addProdutoQtd(p2.getId(), 1), true);
@@ -52,7 +52,7 @@ public class VendaCarrinhoTest {
 		Client webClientLeitura = createClient();
 		
 		WebTarget destinoLeitura = webClientLeitura
-				.target("http://localhost:8080/ecommerce-old-games-house/rest/adicionar/"+idProduto+"/"+qtd);
+				.target("http://localhost:8080/ecommerce-old-games-house/rest/cart/adicionar/"+idProduto+"/"+qtd);
 		
 		Response respostaLeitura = destinoLeitura.request().get();
 		assertEquals(Status.CREATED.getStatusCode(),
@@ -66,7 +66,7 @@ public class VendaCarrinhoTest {
 		Client webClientLeitura = createClient();
 		
 		WebTarget destinoLeitura = webClientLeitura
-				.target("http://localhost:8080/ecommerce-old-games-house/rest/finalizar");
+				.target("http://localhost:8080/ecommerce-old-games-house/rest/cart/finalizar");
 		
 		Response respostaLeitura = destinoLeitura.request().get();
 		assertEquals(Status.CREATED.getStatusCode(),
