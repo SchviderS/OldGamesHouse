@@ -48,7 +48,7 @@ public class FabricanteEndpointTest {
 				urlFabricanteCriado = respostaGravacao.getHeaderString("Location");
 			}
 	
-			Fabricante clienteGravado;
+			Fabricante fabricanteGravado;
 			{
 				Client webClientLeitura = createFabricante();
 	
@@ -59,7 +59,7 @@ public class FabricanteEndpointTest {
 						.request(MediaType.APPLICATION_JSON)
 						.accept(MediaType.APPLICATION_JSON).get();
 	
-				clienteGravado = respostaLeitura.readEntity(Fabricante.class);
+				fabricanteGravado = respostaLeitura.readEntity(Fabricante.class);
 	
 				respostaLeitura.getHeaders().entrySet().stream().forEach(t -> {
 					System.out.println(t.getKey());
@@ -67,11 +67,11 @@ public class FabricanteEndpointTest {
 				});
 			}
 	
-			assertNotNull(clienteGravado.getId());
-			assertNotNull(clienteGravado.getVersion());
+			assertNotNull(fabricanteGravado.getId());
+			assertNotNull(fabricanteGravado.getVersion());
 	
-			assertEquals(fabricante.getNome(), clienteGravado.getNome());
-			assertEquals(fabricante.getLogo(), clienteGravado.getLogo());
+			assertEquals(fabricante.getNome(), fabricanteGravado.getNome());
+			assertEquals(fabricante.getLogo(), fabricanteGravado.getLogo());
 	
 		}
 }
