@@ -1,11 +1,8 @@
 package br.univel.model.controller;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
@@ -49,13 +46,13 @@ public class CarrinhoController {
 		}
 	}
 	
-	@Path("/limparCarrinho/")
+	@Path("/limparCarrinho")
 	public void limpar(){
 		carrinho.limpar();
 		map.clear();
 	}
 	
-	@Path("/finalizar/")
+	@Path("/finalizar")
 	public void finalizar(){
 		Venda venda = new Venda();
 		Set<ItemVenda> lista = new HashSet<>();

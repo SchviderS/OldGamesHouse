@@ -1,7 +1,6 @@
 package br.univel.rest;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
 
@@ -32,7 +31,7 @@ public class ProdutoEndpointTest {
 			Produto produto = new Produto();
 			produto.setNome("Zelda");
 			produto.setDescricao("Ocarina of time");
-			produto.setFabricante(buscarFabricante(Long.valueOf(1)));
+			produto.setFabricante(buscarFabricante(Long.valueOf(2)));
 			produto.setImagem("zelda.img");
 			produto.setValor(new BigDecimal("130.00"));
 			
