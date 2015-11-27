@@ -29,7 +29,7 @@ public class VendaCarrinhoTest {
 		assertEquals(addProdutoQtd(p1.getId(), 2), true);
 		assertEquals(addProdutoQtd(p2.getId(), 1), true);
 		
-		assertEquals(finalizarCarrinho(), true);
+		assertEquals(finalizarCarrinho(1), true);
 		
 	}
 
@@ -55,23 +55,24 @@ public class VendaCarrinhoTest {
 				.target("http://localhost:8080/ecommerce-old-games-house/rest/cart/adicionar/"+idProduto+"/"+qtd);
 		
 		Response respostaLeitura = destinoLeitura.request().get();
-		assertEquals(Status.CREATED.getStatusCode(),
+		assertEquals(Status.OK.getStatusCode(),
 				respostaLeitura.getStatus());
 		
-		return Status.CREATED.getStatusCode() == respostaLeitura.getStatus();
+		return Status.OK.getStatusCode() == respostaLeitura.getStatus();
 	}
 	
-	private boolean finalizarCarrinho() {
+	private boolean finalizarCarrinho(int idCliente) {
 
 		Client webClientLeitura = createClient();
 		
 		WebTarget destinoLeitura = webClientLeitura
-				.target("http://localhost:8080/ecommerce-old-games-house/rest/cart/finalizar");
+				.target("http://localhost:8080/ecommerce-old-games-house/rest/cart/finalizar/"+idCliente);
 		
 		Response respostaLeitura = destinoLeitura.request().get();
-		assertEquals(Status.CREATED.getStatusCode(),
+		assertEquals(Status.OK.getStatusCode(),
 				respostaLeitura.getStatus());
+		System.out.println(respostaLeitura.getStatus());
 		
-		return Status.CREATED.getStatusCode() == respostaLeitura.getStatus();
+		return Status.OK.getStatusCode() == respostaLeitura.getStatus();
 	}
 }
