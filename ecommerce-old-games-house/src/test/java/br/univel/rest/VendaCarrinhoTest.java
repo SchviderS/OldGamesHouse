@@ -28,12 +28,13 @@ public class VendaCarrinhoTest {
 	
 		assertEquals(addProdutoQtd(p1.getId(), 2), true);
 		assertEquals(addProdutoQtd(p2.getId(), 1), true);
+		assertEquals(addProdutoQtd(p2.getId(), 5), true);
 		
 		assertEquals(finalizarCarrinho(1), true);
 		
 	}
 
-	public Produto buscaProduto(long id){		
+	public Produto buscaProduto(long id){
 		Client webClientLeitura = createClient();
 		
 		WebTarget destinoLeitura = webClientLeitura

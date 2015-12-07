@@ -72,25 +72,32 @@ public class CartEndpoint implements Serializable {
 		Venda venda = new Venda();
 		Set<ItemVenda> lista = new HashSet<>();
 		double total = 0;
-		Iterator<Long> keys = carrinho.getMap().keySet().iterator();
+		Iterator<Produto> keys = carrinho.getMap().keySet().iterator();
 		
 		System.out.println("Finalizar cart - "+carrinho.getProdutos());
 		System.out.println("HashMap - "+ carrinho.getMap().toString());
 		
 		while(keys.hasNext()){
-			Long idProduto = keys.next();
-		
+//			Long idProduto = keys.next();
+			Produto p = keys.next();
 			ItemVenda iv = new ItemVenda();
-			iv.setIdProduto(idProduto.intValue());
-			iv.setValor(produtoDao.findById(idProduto).getValor());
-			System.out.println("PRODUTO DO FOR = "+idProduto);
-			Integer qtd = carrinho.getMap().get(idProduto);
+//			iv.setIdProduto(idProduto.intValue());
+//			iv.setValor(produtoDao.findById(idProduto).getValor());
+//			System.out.println("PRODUTO DO FOR = "+idProduto);
+//			Integer qtd = carrinho.getMap().get(idProduto);
+			
+			iv.setIdProduto(p.getId().intValue());
+			iv.setValor(p.getValor());
+			System.out.println("PRODUTO DO FOR = "+p.getId());
+			Integer qtd = carrinho.getMap().get(p);
+			
 			System.out.println("QUANTIDADE RESGATADA = "+qtd);
 			iv.setQuantidade(qtd);
 			lista.add(iv);
 			ivDao.create(iv);
 			
-			total += produtoDao.findById(idProduto).getValor().doubleValue() * iv.getQuantidade();
+//			total += produtoDao.findById(idProduto).getValor().doubleValue() * iv.getQuantidade();
+			total += p.getValor().doubleValue() * iv.getQuantidade();
 		}
 		
 		venda.setCliente(clienteDao.findById(idCliente));
